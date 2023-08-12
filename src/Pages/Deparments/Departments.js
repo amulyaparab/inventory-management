@@ -10,7 +10,7 @@ export const Departments = () => {
       <div className="all-boxes">
         {departments.map((department) => (
           <h2
-            className="single-box"
+            className="single-box clickable-box"
             onClick={() => {
               productsDispatch({
                 type: "FILTER_BY_DEPARTMENT",

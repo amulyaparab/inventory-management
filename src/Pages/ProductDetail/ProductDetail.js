@@ -4,9 +4,11 @@ import "./productDetail.css";
 export const ProductDetail = () => {
   const { productId } = useParams();
   const { productsState } = useProducts();
-  const findProduct = productsState.filteredProducts.find(
-    (product) => product.id === Number(productId)
-  );
+  const findProduct =
+    productsState.filteredProducts.find(
+      (product) => product.id === Number(productId)
+    ) ||
+    productsState.filteredProducts.find((product) => product.id === productId);
   console.log(findProduct);
   return (
     <div className="product-detail">
@@ -24,16 +26,3 @@ export const ProductDetail = () => {
     </div>
   );
 };
-// {
-//   id: 1,
-//   department: "Kitchen",
-//   name: "Stainless Steel Cookware Set",
-//   description:
-//     "A set of high-quality stainless steel cookware including pots and pans.",
-//   price: 149.99,
-//   stock: 15,
-//   sku: "KITCH001",
-//   supplier: "KitchenWonders Inc.",
-//   delivered: 15,
-//   imageUrl: "https://m.media-amazon.com/images/I/616vJsA33kL.jpg",
-// },

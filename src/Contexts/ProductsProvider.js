@@ -12,6 +12,18 @@ export const ProductsProvider = ({ children }) => {
     filteredProducts: inventoryData,
     areLowStockItems: false,
     currentDepartment: "All",
+    newProduct: {
+      id: "",
+      department: "",
+      name: "",
+      description: "",
+      price: 0,
+      stock: 0,
+      sku: "",
+      supplier: "",
+      delivered: 0,
+      imageUrl: "",
+    },
   };
 
   const [productsState, productsDispatch] = useReducer(

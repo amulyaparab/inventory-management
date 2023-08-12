@@ -51,3 +51,6 @@
   margin: 2rem;
   height: 100px;
 }
+.clickable-box {
+  cursor: pointer;
+}
