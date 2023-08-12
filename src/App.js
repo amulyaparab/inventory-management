@@ -15,12 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/departments" element={<Departments />} />
-          <Route
-            path="/departments/:departmentName"
-            element={<Departments />}
-          />
           <Route path="/productListingPage" element={<ProductListing />} />
-          <Route path="/productDetail" element={<ProductDetail />} />
+          <Route path="/productDetail/:productId" element={<ProductDetail />} />
           <Route path="/productManagemnet" element={<ProductManagement />} />
         </Routes>
       </div>

@@ -1,0 +1,13 @@
+.single-product {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem 0;
+  cursor: pointer;
+}
+.single-product p {
+  padding: 1rem;
+}
+.single-product img {
+  width: 200px;
+}

@@ -11,7 +11,7 @@ export const Departments = () => {
         {departments.map((department) => (
           <h2
             className="single-box"
-            onClick={() => navigate(`/departments/${department}`)}
+            // onClick={() => navigate(`/departments/${department}`)}
           >
             {department}
           </h2>
