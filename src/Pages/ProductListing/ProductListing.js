@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useProducts } from "../../Contexts/ProductsProvider";
 import "./productListing.css";
 export const ProductListing = () => {
-  const { productsState, productsDispatch } = useProducts();
+  const { productsState, productsDispatch, filteredArray } = useProducts();
   const navigate = useNavigate();
   return (
     <>
@@ -46,21 +46,11 @@ export const ProductListing = () => {
         <option value="stock">Stock</option>
       </select>
       <button onClick={() => navigate("/productManagement")}>New</button>
+
       <div className="all-products">
-        {productsState?.filteredProducts?.length ? (
-          productsState?.filteredProducts.map(
-            ({
-              id,
-              department,
-              name,
-              description,
-              price,
-              stock,
-              sku,
-              supplier,
-              delivered,
-              imageUrl,
-            }) => (
+        {filteredArray?.length ? (
+          filteredArray?.map(
+            ({ id, name, description, price, stock, supplier, imageUrl }) => (
               <div
                 className="single-product"
                 key={id}
@@ -82,16 +72,3 @@ export const ProductListing = () => {
     </>
   );
 };
-// {
-//   id: 1,
-//   department: "Kitchen",
-//   name: "Stainless Steel Cookware Set",
-//   description:
-//     "A set of high-quality stainless steel cookware including pots and pans.",
-//   price: 149.99,
-//   stock: 15,
-//   sku: "KITCH001",
-//   supplier: "KitchenWonders Inc.",
-//   delivered: 15,
-//   imageUrl: "https://m.media-amazon.com/images/I/616vJsA33kL.jpg",
-// },

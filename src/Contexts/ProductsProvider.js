@@ -32,6 +32,15 @@ export const ProductsProvider = ({ children }) => {
     productsReducer,
     initialState
   );
+  const filteredArray = productsState.filteredProducts.filter(
+    (product) =>
+      ((productsState.currentDepartment === "All"
+        ? product
+        : product.department === productsState.currentDepartment) &&
+        !productsState.areLowStockItems) ||
+      product.stock <= 10
+  );
+
   useEffect(() => {
     localStorage.setItem(
       "currentProducts",
@@ -44,7 +53,7 @@ export const ProductsProvider = ({ children }) => {
   }, [productsState.filteredProducts, productsState.currentDepartment]);
   return (
     <ProductsContext.Provider
-      value={{ departments, productsState, productsDispatch }}
+      value={{ departments, productsState, productsDispatch, filteredArray }}
     >
       {children}
     </ProductsContext.Provider>

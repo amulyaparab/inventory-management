@@ -5,20 +5,16 @@ export const productsReducer = (productsState, action) => {
       return {
         ...productsState,
         currentDepartment: action.payload,
-        filteredProducts: productsState.products.filter(
-          (product) =>
-            !productsState?.areLowStockItems &&
-            productsState?.filteredProducts?.filter(
-              (product) => product.stock <= 10
-            ) &&
-            (action.payload === "All"
-              ? product
-              : product.department === action.payload)
+        filteredProducts: productsState.products.filter((product) =>
+          action.payload === "All"
+            ? product
+            : product.department === action.payload
         ),
       };
     case "SORT_BY":
       return {
         ...productsState,
+        sortBy: action.payload,
         filteredProducts: productsState.filteredProducts.sort((a, b) => {
           if (action.payload !== "sort") {
             return action.payload === "name"
@@ -32,11 +28,6 @@ export const productsReducer = (productsState, action) => {
       return {
         ...productsState,
         areLowStockItems: action.payload,
-        filteredProducts: !productsState?.areLowStockItems
-          ? productsState?.filteredProducts?.filter(
-              (product) => product.stock <= 10
-            )
-          : productsState.filteredProducts,
       };
 
     case "NEW_PRODUCT_DEPARTMENT":
@@ -115,21 +106,3 @@ export const productsReducer = (productsState, action) => {
       return productsState;
   }
 };
-//   const initialState = {
-//     products: inventoryData,
-//     filteredProducts: inventoryData,
-//     areLowStockItems: false,
-//     currentDepartment: "All",
-//     newProduct: {
-//       id: "",
-//       department: "",
-//       name: "",
-//       description: "",
-//       price: 0,
-//       stock: 0,
-//       sku: "",
-//       supplier: "",
-//       delivered: 0,
-//       imageUrl: "",
-//     },
-//   };
