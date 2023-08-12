@@ -11,7 +11,8 @@ export const ProductsProvider = ({ children }) => {
     products: inventoryData,
     filteredProducts:
       JSON.parse(localStorage.getItem("currentProducts")) || inventoryData,
-    areLowStockItems: false,
+    areLowStockItems:
+      JSON.parse(localStorage.getItem("isLowStockApplied")) || false,
     currentDepartment:
       JSON.parse(localStorage.getItem("currentDepartment")) || "All",
     newProduct: {
@@ -32,7 +33,7 @@ export const ProductsProvider = ({ children }) => {
     productsReducer,
     initialState
   );
-  const filteredArray = productsState.filteredProducts.filter(
+  const filteredProducts = productsState.filteredProducts.filter(
     (product) =>
       ((productsState.currentDepartment === "All"
         ? product
@@ -44,16 +45,24 @@ export const ProductsProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem(
       "currentProducts",
-      JSON.stringify(productsState?.filteredProducts || {})
+      JSON.stringify(productsState?.filteredProducts || [])
     );
     localStorage.setItem(
       "currentDepartment",
       JSON.stringify(productsState?.currentDepartment || "")
     );
-  }, [productsState.filteredProducts, productsState.currentDepartment]);
+    localStorage.setItem(
+      "isLowStockApplied",
+      JSON.stringify(productsState?.areLowStockItems || false)
+    );
+  }, [
+    productsState.filteredProducts,
+    productsState.currentDepartment,
+    productsState.areLowStockItems,
+  ]);
   return (
     <ProductsContext.Provider
-      value={{ departments, productsState, productsDispatch, filteredArray }}
+      value={{ departments, productsState, productsDispatch, filteredProducts }}
     >
       {children}
     </ProductsContext.Provider>

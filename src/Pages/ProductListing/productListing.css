@@ -1,5 +1,5 @@
 .all-products {
-  margin: 1rem 1rem 3rem 1rem;
+  margin: auto;
 }
 
 .single-product {
@@ -9,12 +9,16 @@
   padding: 1rem;
   cursor: pointer;
 }
-.single-product p {
-  padding: 1rem;
+.single-product th {
+  padding: 0 0 0 1rem;
+}
+.single-product td {
+  padding: 0.5rem;
 }
 .single-product img {
   width: 200px;
 }
+
 select {
   padding: 0.3rem;
   border-radius: 5px;
@@ -27,4 +31,5 @@ button {
   padding: 0.5rem 1rem;
   color: white;
   font-weight: bold;
+  cursor: pointer;
 }

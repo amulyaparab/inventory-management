@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useProducts } from "../../Contexts/ProductsProvider";
 import "./productListing.css";
 export const ProductListing = () => {
-  const { productsState, productsDispatch, filteredArray } = useProducts();
+  const { productsState, productsDispatch, filteredProducts } = useProducts();
   const navigate = useNavigate();
   return (
     <>
@@ -47,24 +47,48 @@ export const ProductListing = () => {
       </select>
       <button onClick={() => navigate("/productManagement")}>New</button>
 
-      <div className="all-products">
-        {filteredArray?.length ? (
-          filteredArray?.map(
-            ({ id, name, description, price, stock, supplier, imageUrl }) => (
-              <div
-                className="single-product"
-                key={id}
-                onClick={() => navigate(`/productDetail/${id}`)}
-              >
-                <img src={imageUrl} alt={name} />
-                <div>{name}</div>
-                <p>{description}</p>
-                <p>{price}</p>
-                <p>{stock}</p>
-                <p>{supplier}</p>
-              </div>
-            )
-          )
+      <div>
+        {filteredProducts?.length ? (
+          <table className="all-products">
+            <thead>
+              <tr className="single-product">
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th className="smaller">Price</th>
+                <th className="smaller">Stock</th>
+                <th className="smaller">Supplier</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredProducts?.map(
+                ({
+                  id,
+                  name,
+                  description,
+                  price,
+                  stock,
+                  supplier,
+                  imageUrl,
+                }) => (
+                  <tr
+                    className="single-product"
+                    key={id}
+                    onClick={() => navigate(`/productDetail/${id}`)}
+                  >
+                    <td>
+                      <img src={imageUrl} alt={name} />
+                    </td>
+                    <td>{name}</td>
+                    <td>{description}</td>
+                    <td className="smaller">${price}</td>
+                    <td className="smaller">{stock}</td>
+                    <td className="smaller">{supplier}</td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </table>
         ) : (
           <h2>No Products Available.</h2>
         )}

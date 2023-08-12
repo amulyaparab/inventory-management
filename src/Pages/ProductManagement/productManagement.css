@@ -26,4 +26,5 @@ textarea {
   width: 620px;
   margin: 1rem 0.7rem;
   font-size: medium;
+  cursor: pointer;
 }
