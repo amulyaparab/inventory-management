@@ -1,12 +1,9 @@
-/* .all-stocks {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+.green {
+  color: green;
 }
-.stocks-box {
-  background-color: #dbdbdb;
-  padding: 1rem;
-  border-radius: 10px;
-  width: 160px;
-  margin: 2rem;
-} */
+.orange {
+  color: rgb(240, 157, 2);
+}
+.red {
+  color: rgb(214, 18, 18);
+}

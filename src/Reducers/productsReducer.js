@@ -5,10 +5,15 @@ export const productsReducer = (productsState, action) => {
       return {
         ...productsState,
         currentDepartment: action.payload,
-        filteredProducts: productsState.products.filter((product) =>
-          action.payload === "All"
-            ? product
-            : product.department === action.payload
+        filteredProducts: productsState.products.filter(
+          (product) =>
+            !productsState?.areLowStockItems &&
+            productsState?.filteredProducts?.filter(
+              (product) => product.stock <= 10
+            ) &&
+            (action.payload === "All"
+              ? product
+              : product.department === action.payload)
         ),
       };
     case "SORT_BY":
@@ -23,11 +28,12 @@ export const productsReducer = (productsState, action) => {
         }),
       };
     case "LOW_STOCK_ITEMS":
+      console.log(action.payload);
       return {
         ...productsState,
         areLowStockItems: action.payload,
-        filteredProducts: productsState.areLowStockItems
-          ? productsState.filteredProducts.filter(
+        filteredProducts: !productsState?.areLowStockItems
+          ? productsState?.filteredProducts?.filter(
               (product) => product.stock <= 10
             )
           : productsState.filteredProducts,

@@ -117,7 +117,6 @@ export const ProductManagement = () => {
           <input
             value={productsState?.newProduct?.imageUrl}
             required
-            type="url"
             onChange={(event) =>
               productsDispatch({
                 type: "NEW_PRODUCT_IMAGE",
@@ -126,7 +125,9 @@ export const ProductManagement = () => {
             }
           />
         </label>
-        <button type="submit">Submit</button>
+        <button className="submit-button" type="submit">
+          Submit
+        </button>
       </form>
     </>
   );

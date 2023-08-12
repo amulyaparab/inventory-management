@@ -24,12 +24,13 @@ export const ProductListing = () => {
       <label>
         <input
           type="checkbox"
-          // onChange={(event) =>
-          //   productsDispatch({
-          //     type: "LOW_STOCK_ITEMS",
-          //     payload: event.target.checked,
-          //   })
-          // }
+          checked={productsState.areLowStockItems}
+          onChange={(event) =>
+            productsDispatch({
+              type: "LOW_STOCK_ITEMS",
+              payload: event.target.checked,
+            })
+          }
         />
         Low Stock Items
       </label>
@@ -45,33 +46,39 @@ export const ProductListing = () => {
         <option value="stock">Stock</option>
       </select>
       <button onClick={() => navigate("/productManagement")}>New</button>
-      {productsState?.filteredProducts.map(
-        ({
-          id,
-          department,
-          name,
-          description,
-          price,
-          stock,
-          sku,
-          supplier,
-          delivered,
-          imageUrl,
-        }) => (
-          <div
-            className="single-product"
-            key={id}
-            onClick={() => navigate(`/productDetail/${id}`)}
-          >
-            <img src={imageUrl} alt={name} />
-            <div>{name}</div>
-            <p>{description}</p>
-            <p>{price}</p>
-            <p>{stock}</p>
-            <p>{supplier}</p>
-          </div>
-        )
-      )}
+      <div className="all-products">
+        {productsState?.filteredProducts?.length ? (
+          productsState?.filteredProducts.map(
+            ({
+              id,
+              department,
+              name,
+              description,
+              price,
+              stock,
+              sku,
+              supplier,
+              delivered,
+              imageUrl,
+            }) => (
+              <div
+                className="single-product"
+                key={id}
+                onClick={() => navigate(`/productDetail/${id}`)}
+              >
+                <img src={imageUrl} alt={name} />
+                <div>{name}</div>
+                <p>{description}</p>
+                <p>{price}</p>
+                <p>{stock}</p>
+                <p>{supplier}</p>
+              </div>
+            )
+          )
+        ) : (
+          <h2>No Products Available.</h2>
+        )}
+      </div>
     </>
   );
 };

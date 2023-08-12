@@ -1,4 +1,4 @@
-import { useContext, useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import { createContext } from "react";
 import { inventoryData } from "../Database/inventoryData";
 import { productsReducer } from "../Reducers/productsReducer";
@@ -9,9 +9,11 @@ export const ProductsProvider = ({ children }) => {
 
   const initialState = {
     products: inventoryData,
-    filteredProducts: inventoryData,
+    filteredProducts:
+      JSON.parse(localStorage.getItem("currentProducts")) || inventoryData,
     areLowStockItems: false,
-    currentDepartment: "All",
+    currentDepartment:
+      JSON.parse(localStorage.getItem("currentDepartment")) || "All",
     newProduct: {
       id: "",
       department: "",
@@ -30,7 +32,16 @@ export const ProductsProvider = ({ children }) => {
     productsReducer,
     initialState
   );
-
+  useEffect(() => {
+    localStorage.setItem(
+      "currentProducts",
+      JSON.stringify(productsState?.filteredProducts || {})
+    );
+    localStorage.setItem(
+      "currentDepartment",
+      JSON.stringify(productsState?.currentDepartment || "")
+    );
+  }, [productsState.filteredProducts, productsState.currentDepartment]);
   return (
     <ProductsContext.Provider
       value={{ departments, productsState, productsDispatch }}

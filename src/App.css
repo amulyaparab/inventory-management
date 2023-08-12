@@ -54,3 +54,6 @@
 .clickable-box {
   cursor: pointer;
 }
+.clickable-box:hover {
+  transform: scale(1.1);
+}

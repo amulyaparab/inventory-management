@@ -7,15 +7,15 @@ export const Dashboard = () => {
       <h1>Dashboard</h1>
       <div className="all-boxes">
         <div className="single-box">
-          <p>{totalStock}</p>
+          <h3 className="green">{totalStock}</h3>
           <h3>Total Stock</h3>
         </div>
         <div className="single-box">
-          <p>{totalDelivered}</p>
+          <h3 className="orange">{totalDelivered}</h3>
           <h3>Total Delivered</h3>
         </div>
         <div className="single-box">
-          <p>{lowStockItems}</p>
+          <h3 className="red">{lowStockItems}</h3>
           <h3>Low Stock</h3>
         </div>
       </div>
