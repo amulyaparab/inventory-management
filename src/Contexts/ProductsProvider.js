@@ -10,6 +10,7 @@ export const ProductsProvider = ({ children }) => {
       case "FILTER_BY_DEPARTMENT":
         return {
           ...productsState,
+          currentDepartment: action.payload,
           filteredProducts: productsState.products.filter((product) =>
             action.payload === "All"
               ? product
@@ -17,6 +18,16 @@ export const ProductsProvider = ({ children }) => {
           ),
         };
       case "SORT_BY":
+        return {
+          ...productsState,
+          filteredProducts: productsState.filteredProducts.sort((a, b) => {
+            if (action.payload !== "sort") {
+              return action.payload === "name"
+                ? a.name.localeCompare(b.name)
+                : a[action.payload] - b[action.payload];
+            }
+          }),
+        };
       case "LOW_STOCK_ITEMS":
         return {
           ...productsState,
@@ -35,6 +46,7 @@ export const ProductsProvider = ({ children }) => {
     products: inventoryData,
     filteredProducts: inventoryData,
     areLowStockItems: false,
+    currentDepartment: "All",
   };
   const [productsState, productsDispatch] = useReducer(
     productsReducer,

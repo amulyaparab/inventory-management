@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useProducts } from "../Contexts/ProductsProvider";
 
 export const Departments = () => {
-  const { departments } = useProducts();
+  const { departments, productsDispatch } = useProducts();
   const navigate = useNavigate();
   return (
     <>
@@ -11,7 +11,13 @@ export const Departments = () => {
         {departments.map((department) => (
           <h2
             className="single-box"
-            // onClick={() => navigate(`/departments/${department}`)}
+            onClick={() => {
+              productsDispatch({
+                type: "FILTER_BY_DEPARTMENT",
+                payload: department,
+              });
+              navigate("/productListingPage");
+            }}
           >
             {department}
           </h2>

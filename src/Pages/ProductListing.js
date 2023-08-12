@@ -8,6 +8,7 @@ export const ProductListing = () => {
     <>
       <h1>Products</h1>
       <select
+        value={productsState.currentDepartment}
         onChange={(event) =>
           productsDispatch({
             type: "FILTER_BY_DEPARTMENT",
@@ -32,11 +33,18 @@ export const ProductListing = () => {
         />
         Low Stock Items
       </label>
-      <select>
-        <option>Name</option>
-        <option>Price</option>
-        <option>Stock</option>
+
+      <select
+        onChange={(event) =>
+          productsDispatch({ type: "SORT_BY", payload: event.target.value })
+        }
+      >
+        <option value="sort">Sort By</option>
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+        <option value="stock">Stock</option>
       </select>
+      <button onClick={() => navigate("/productManagement")}>New</button>
       {productsState?.filteredProducts.map(
         ({
           id,

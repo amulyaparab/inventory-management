@@ -1,0 +1,23 @@
+.new-product-form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: auto;
+  text-align: left;
+  padding: 2rem;
+  background-color: #212121;
+  color: white;
+  font-size: 18px;
+  border-radius: 10px;
+}
+.new-product-form input,
+textarea {
+  width: 100%;
+  margin: 0.3rem;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 0;
+}
+.single-input {
+  padding: 0.5rem;
+}
