@@ -1,4 +1,4 @@
-import { useDashboardData } from "../Contexts/DashboardProvider";
+import { useDashboardData } from "../../Contexts/DashboardProvider";
 import "./dashboard.css";
 export const Dashboard = () => {
   const { totalStock, totalDelivered, lowStockItems } = useDashboardData();

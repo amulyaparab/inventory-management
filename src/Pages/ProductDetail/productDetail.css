@@ -1,0 +1,11 @@
+.product-detail {
+  width: 700px;
+  margin: auto;
+}
+.product-detail img {
+  width: 500px;
+}
+.details {
+  text-align: left;
+  padding: 1rem;
+}

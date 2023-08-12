@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useProducts } from "../Contexts/ProductsProvider";
+import { useProducts } from "../../Contexts/ProductsProvider";
 
 export const Departments = () => {
   const { departments, productsDispatch } = useProducts();

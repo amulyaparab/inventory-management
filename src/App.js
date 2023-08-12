@@ -1,11 +1,11 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { Dashboard } from "./Pages/Dashboard";
-import { Departments } from "./Pages/Departments";
-import { ProductListing } from "./Pages/ProductListing";
-import { ProductDetail } from "./Pages/ProductDetail";
-import { ProductManagement } from "./Pages/ProductManagement";
-import { SideNav } from "./Components/SideNav";
+import { Dashboard } from "./Pages/Dashboard/Dashboard";
+import { Departments } from "./Pages/Deparments/Departments";
+import { ProductListing } from "./Pages/ProductListing/ProductListing";
+import { ProductDetail } from "./Pages/ProductDetail/ProductDetail";
+import { ProductManagement } from "./Pages/ProductManagement/ProductManagement";
+import { SideNav } from "./Components/SideNav/SideNav";
 
 function App() {
   return (
