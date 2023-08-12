@@ -1,10 +1,9 @@
-import { useContext, useReducer } from "react";
+import { useContext } from "react";
 import { createContext } from "react";
 import { inventoryData } from "../Database/inventoryData";
 
 const DashboardContext = createContext();
 export const DashboardProvider = ({ children }) => {
-  const dashboardReducer = () => {};
   const totalStock = inventoryData.reduce(
     (totalStock, inventory) => (totalStock += inventory.stock),
     0
@@ -17,11 +16,6 @@ export const DashboardProvider = ({ children }) => {
     (inventory) => inventory.stock <= 10
   ).length;
 
-  const initialState = {};
-  const [dashboardState, dashboardDispatch] = useReducer(
-    dashboardReducer,
-    initialState
-  );
   return (
     <DashboardContext.Provider
       value={{ totalStock, totalDelivered, lowStockItems }}

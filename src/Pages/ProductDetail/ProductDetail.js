@@ -9,7 +9,7 @@ export const ProductDetail = () => {
       (product) => product.id === Number(productId)
     ) ||
     productsState.filteredProducts.find((product) => product.id === productId);
-  console.log(findProduct);
+
   return (
     <div className="product-detail">
       <h1>{findProduct?.name}</h1>

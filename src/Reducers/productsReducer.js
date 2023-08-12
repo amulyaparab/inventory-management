@@ -24,7 +24,6 @@ export const productsReducer = (productsState, action) => {
         }),
       };
     case "LOW_STOCK_ITEMS":
-      console.log(action.payload);
       return {
         ...productsState,
         areLowStockItems: action.payload,

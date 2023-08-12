@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useProducts } from "../../Contexts/ProductsProvider";
 import "./productListing.css";
+import { ProductRow } from "../../Components/ProductRow.js/ProductRow";
 export const ProductListing = () => {
   const { productsState, productsDispatch, filteredProducts } = useProducts();
   const navigate = useNavigate();
@@ -61,32 +62,9 @@ export const ProductListing = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredProducts?.map(
-                ({
-                  id,
-                  name,
-                  description,
-                  price,
-                  stock,
-                  supplier,
-                  imageUrl,
-                }) => (
-                  <tr
-                    className="single-product"
-                    key={id}
-                    onClick={() => navigate(`/productDetail/${id}`)}
-                  >
-                    <td>
-                      <img src={imageUrl} alt={name} />
-                    </td>
-                    <td>{name}</td>
-                    <td>{description}</td>
-                    <td className="smaller">${price}</td>
-                    <td className="smaller">{stock}</td>
-                    <td className="smaller">{supplier}</td>
-                  </tr>
-                )
-              )}
+              {filteredProducts?.map((item) => (
+                <ProductRow {...item} />
+              ))}
             </tbody>
           </table>
         ) : (
